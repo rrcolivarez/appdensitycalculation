@@ -10,15 +10,13 @@ This lines of codes compute for the population density of the cities in the Phil
 #Reading csv
 Below code is used to read the csv data
 ```{r}
-population = read.csv("population.csv")
-regionarea = read.csv("regionarea.csv")
+pop_data <- read.csv("population.csv")
+region_data <- read.csv("regionarea.csv")
 ```
 
 #Counting the Unique Cities
 Below are the lines of codes used to count the number of unique cities per region using unique() function and length() function.
 ```{r include=FALSE}
-pop_data <- read.csv("population.csv")
-region_data <- read.csv("regionarea.csv")
 cityduplicates_per_region <- aggregate(pop_data$CityProvince, by = list(pop_data$Region), FUN = function(x) length(unique(x)))
 names(cityduplicates_per_region) <- c("Region", "NumUniqueCity")
 unique_cityduplicates_per_region <- merge(cityduplicates_per_region, region_data)
